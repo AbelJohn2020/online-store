@@ -1,7 +1,9 @@
 const base_uri = "https://kqxty15mpg.execute-api.us-east-1.amazonaws.com/";
 const url_products = `${base_uri}products`;
+const url_buyers = `${base_uri}buyers`;
 const csvtojson = require('csvtojson');
 const request = require('request');
+const fetch = require('node-fetch')
 
 module.exports = {
     getDataProducts: function () {
@@ -10,7 +12,12 @@ module.exports = {
         return csvtojson({delimiter: "'", noheader:true, output:'json'})
             .fromStream(csvStr)
             .subscribe((csv)=> csv)
-            .then(data => data)
-            .catch(e => e)
+    },
+
+    getDataBuyers: function () {
+        return fetch(url_buyers)
+                .then( res => res.json())
+                .then( data => data)
+                .catch(e => console.log(e))
     }
 }
