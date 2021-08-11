@@ -1,0 +1,1 @@
+export const base_uri = "https://kqxty15mpg.execute-api.us-east-1.amazonaws.com/";
