@@ -12,15 +12,15 @@ function App() {
       .then(res => setIdBuyer(res))
       .catch(error => error)
   }, [])
-  
+
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={TableBuyers}/>
         {
-          idBuyer.map(id => (
+          idBuyer.map(({id, name}) => (
             <Route key={id} exact path={`/buyer/${id}`}>
-                <TableOfTransactions id={id}/>
+                <TableOfTransactions id={id} name={name}/>
             </Route>
           ))
         }

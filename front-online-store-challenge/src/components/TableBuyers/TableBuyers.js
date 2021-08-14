@@ -39,7 +39,6 @@ const TableBuyers = () => {
                                 <tbody>
                                 {
                                     dataBuyers.map( ({id, name, age}) => (
-                                        // <tr key={nextId()}>
                                         <tr key={id}>
                                             <td>
                                                 {name}

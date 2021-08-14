@@ -2,18 +2,8 @@ import { getBuyersData } from "./utils";
 
 export const getIdsBuyers = async () => {
     return getBuyersData()
-                .then(dataB => getDataBuyers(dataB))
+                .then(dataB => filterDataB(dataB))
                 .catch(error => error);
-}
-
-const getDataBuyers = (dataB) => {
-    if(dataB !== 0) {
-        const ids = dataB.map( buyers => buyers.id)
-        const removeRepeatIds = [...new Set(ids)];
-        return removeRepeatIds;
-    } else {
-        return dataB;
-    }
 }
 
 export const filterDataB = (dataB) => {
