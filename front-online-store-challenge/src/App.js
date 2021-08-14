@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import TableBuyers from "./components/TableBuyers/TableBuyers";
+import TableOfTransactions from "./components/TableOfTransactions/TableOfTransactions";
 import { getIdsBuyers } from "./components/utils/filterData";
 
 function App() {
@@ -19,10 +20,11 @@ function App() {
         <Route exact path="/" component={TableBuyers}/>
         {
           idBuyer.map(id => (
-            <Route key={id} exact path={`/buyer/${id}`}/>
+            <Route key={id} exact path={`/buyer/${id}`}>
+                <TableOfTransactions id={id}/>
+            </Route>
           ))
         }
-        <Route />
       </Switch>
     </Router>
   );
