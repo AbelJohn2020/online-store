@@ -1,52 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { getBuyersData, getProductsData, getTransactionsData } from "./components/utils/utils";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import TableBuyers from "./components/TableBuyers/TableBuyers";
+import { getIdsBuyers } from "./components/utils/filterData";
 
 function App() {
-  const [products, setProducts] = useState({
-    data:[],
-    loading: true,
-  });
-
-  const [buyers, setBuyers] = useState({
-    data:[],
-    loading: true,
-  });
-
-  const [transactions, setTransactions] = useState({
-    data:[],
-    loading: true,
-  });
-
+  const [idBuyer, setIdBuyer] = useState([])
+  
   useEffect(() => {
-    getProductsData()
-      .then(res => setProducts({
-        data: res,
-        loading: false,
-      }))
-      .catch(e => e);
+    getIdsBuyers()
+      .then(res => setIdBuyer(res))
+      .catch(error => error)
+  }, [])
 
-    getBuyersData()
-      .then(res => setBuyers({
-        data: res,
-        loading: false,
-      }))
-      .catch(e => e);
-
-    getTransactionsData()
-      .then(res => setTransactions({
-        data: res,
-        loading: false,
-      }))
-      .catch(e => e)
-  }, []);
-
-  console.log(products);
-  console.log(buyers);
-  console.log(transactions);
+  console.log(idBuyer);
   return (
-    <div className="App">
-      <h1>Online store Challenge</h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={TableBuyers}/>
+        {
+          idBuyer.map(id => (
+            <Route key={id} exact path={`/buyer/${id}`}/>
+          ))
+        }
+        <Route />
+      </Switch>
+    </Router>
   );
 }
 
