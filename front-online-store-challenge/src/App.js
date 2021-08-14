@@ -12,8 +12,7 @@ function App() {
       .then(res => setIdBuyer(res))
       .catch(error => error)
   }, [])
-
-  console.log(idBuyer);
+  
   return (
     <Router>
       <Switch>

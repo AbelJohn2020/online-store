@@ -3,49 +3,22 @@ import { filterDataB } from '../utils/filterData';
 import { getBuyersData } from '../utils/utils';
 
 const TableBuyers = () => {
-    // const [products, setProducts] = useState({
-  //   dataP:[],
-  //   loadingP: true,
-  // });
+    const [buyers, setBuyers] = useState({
+        dataB:[],
+        loadingB: true,
+    });
+    const { dataB, loadingB } = buyers;
+    
+    useEffect(() => {
+        getBuyersData()
+        .then(res => setBuyers({
+            dataB: res,
+            loadingB: false,
+        }))
+        .catch(e => e);
+    }, []);
 
-  const [buyers, setBuyers] = useState({
-    dataB:[],
-    loadingB: true,
-  });
-
-  // const [transactions, setTransactions] = useState({
-  //   dataT:[],
-  //   loadingT: true,
-  // });
-
-  // const { dataP, loadingP } = products;
-  const { dataB, loadingB } = buyers;
-  // const { dataT, loadingT } = transactions;
-  
-  useEffect(() => {
-    // getProductsData()
-    //   .then(res => setProducts({
-    //     dataP: res,
-    //     loading: false,
-    //   }))
-    //   .catch(e => e);
-
-    getBuyersData()
-      .then(res => setBuyers({
-        dataB: res,
-        loading: false,
-      }))
-      .catch(e => e);
-
-    // getTransactionsData()
-    //   .then(res => setTransactions({
-    //     dataT: res,
-    //     loading: false,
-    //   }))
-    //   .catch(e => e)
-  }, []);
-
-  const dataBuyers = filterDataB(dataB);
+    const dataBuyers = filterDataB(dataB);
     return (
         <div>
             {
