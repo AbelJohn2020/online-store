@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import IdsProducts from '../IdsProducts/IdsProducts';
+import Loading from '../Loaging/Loading';
 import { transactionsTable } from '../utils/filterData';
 
 const TableOfTransactions = ({id, name}) => {
@@ -24,9 +25,7 @@ const TableOfTransactions = ({id, name}) => {
         <div>
             {
                 loadingT
-                    ?   <div>
-                            <h1>loading...</h1>
-                            </div>
+                    ?   <Loading />
                     :   <div>
                             <h1>Table of {name} purchase record</h1>
                             <div>

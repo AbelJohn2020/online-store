@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Loading from '../Loaging/Loading';
 import { filterDataB } from '../utils/filterData';
 import { getBuyersData } from '../utils/utils';
+import { Table, TdBody, ThHeader, TrBody, TrHeader } from './TableBuyersStyles';
 
-const TableBuyers = () => {
+const TableBuyers = ({shadow}) => {
     const [buyers, setBuyers] = useState({
         dataB:[],
         loadingB: true,
@@ -71,50 +73,48 @@ const TableBuyers = () => {
         <div>
             {
                 loadingB
-                ? <div>
-                    <h1>loading...</h1>
-                    </div>
-                :   <div>
-                        <h1>Table of Clients that made purchases on the plataform</h1>
-                        <hr />
+                    ?   <Loading/>
+                    :   <div>
+                            <h1>Table of Clients that made purchases on the plataform</h1>
+                            <hr />
 
-                        <div>
-                            <input 
-                                type="text"
-                                placeholder="Search partnert name"
-                                value={inputValue}
-                                onChange={(e) => handleChange(e)}
-                            />
                             <div>
-                                <button onClick={() => handlePreviousBlock()}>previous</button>
-                                <button onClick={() => handleNextBlock()}>next</button>
+                                <input 
+                                    type="text"
+                                    placeholder="Search partnert name"
+                                    value={inputValue}
+                                    onChange={(e) => handleChange(e)}
+                                />
+                                <div>
+                                    <button onClick={() => handlePreviousBlock()}>previous</button>
+                                    <button onClick={() => handleNextBlock()}>next</button>
+                                </div>
+                            </div>
+                            <div>
+                                <Table shadow={shadow}>
+                                    <thead>
+                                        <TrHeader>
+                                            <ThHeader cope="col">Name</ThHeader>
+                                            <ThHeader cope="col">Age</ThHeader>
+                                        </TrHeader>
+                                    </thead>
+                                    <tbody>
+                                    {
+                                        dataBuyers.map( ({id, name, age}) => (
+                                            <TrBody key={id}>
+                                                <TdBody>
+                                                    <Link to={`/buyer/${id}`} className="name">
+                                                        {name}
+                                                    </Link>
+                                                </TdBody>
+                                                <TdBody>{age}</TdBody>
+                                            </TrBody>
+                                        ))
+                                    }
+                                    </tbody>
+                                </Table>
                             </div>
                         </div>
-                        <div>
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th cope="col">Name</th>
-                                    <th cope="col">Age</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    dataBuyers.map( ({id, name, age}) => (
-                                        <tr key={id}>
-                                            <td>
-                                                <Link to={`/buyer/${id}`} className="name">
-                                                    {name}
-                                                </Link>
-                                            </td>
-                                            <td>{age}</td>
-                                        </tr>
-                                    ))
-                                }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
             }
         </div>
     )

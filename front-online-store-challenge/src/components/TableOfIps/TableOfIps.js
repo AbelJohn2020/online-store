@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { BuyerRequest, transactionsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
+import Loading from '../Loaging/Loading';
 
 const TableOfIps = ({ip}) => {
     const [transactions, setTransactions] = useState({
@@ -40,7 +41,7 @@ const TableOfIps = ({ip}) => {
         <div>
             {
                 loadingT
-                    ?   <div>loading...</div>
+                    ?   <Loading />
                     :   <ul>
                             {
                                 getNames.map( partnert => (

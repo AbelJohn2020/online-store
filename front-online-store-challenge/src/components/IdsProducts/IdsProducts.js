@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ProductsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
+import { Li, Ul } from './ListStyles';
 
 const IdsProducts = ({ids}) => {
     const [products, setProducts] = useState({
@@ -36,15 +37,15 @@ const IdsProducts = ({ids}) => {
 
     return (
         <div>
-            <ul>
+            <Ul>
                 {
                     theProducts.map( product => (
-                        <li key={nextId()}>
+                        <Li key={nextId()}>
                             {product.name}
-                        </li>
+                        </Li>
                     ))
                 }
-            </ul>
+            </Ul>
         </div>
     )
 }
