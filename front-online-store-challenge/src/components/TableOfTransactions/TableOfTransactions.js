@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import IdsProducts from '../IdsProducts/IdsProducts';
-import { getTransactionsData } from '../utils/utils';
+import { transactionsTable } from '../utils/filterData';
 
 const TableOfTransactions = ({id, name}) => {
     const [transactions, setTransactions] = useState({
       dataT:[],
       loadingT: true,
     });
-
     const { dataT, loadingT } = transactions;
 
     useEffect(() => {
-        getTransactionsData()
-        .then(res => setTransactions({
-            dataT: res,
-            loadingT: false,
-        }))
-        .catch(e => e);
-    }, []);
+        transactionsTable(setTransactions);
+    }, [])
 
     const filterDataTransactionsByBuyer = () => {
         return dataT.filter( transaction => transaction['buyer id'] === id);
@@ -48,7 +43,11 @@ const TableOfTransactions = ({id, name}) => {
                                         transactionsBuyer.map( transaction => (
                                             <tr key={transaction['id']}>
                                                 <td>{transaction['device']}</td>
-                                                <td>{transaction['ip']}</td>
+                                                <td>
+                                                    <Link to={`/ip/${transaction['ip']}`}>
+                                                        {transaction['ip']}
+                                                    </Link>
+                                                </td>
                                                 <td>
                                                     <IdsProducts ids={transaction['product ids']} />
                                                 </td>

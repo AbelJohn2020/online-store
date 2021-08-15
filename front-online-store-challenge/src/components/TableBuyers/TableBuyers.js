@@ -50,12 +50,6 @@ const TableBuyers = () => {
         } else {
             setPagination(0)
         }
-        
-        // if(pagination < 700) {
-        //     setPagination(pagination+20)
-        // } else {
-        //     setPagination(0)
-        // }
     }
 
     const handlePreviousBlock = () => {
@@ -73,11 +67,6 @@ const TableBuyers = () => {
         setInputValue( input );
     }
 
-    const handlekeyPress = (e) => {
-        if(e.key==='Enter') {
-            setInputValue('');
-        }
-    }
     return (
         <div>
             {
@@ -95,10 +84,9 @@ const TableBuyers = () => {
                                 placeholder="Search partnert name"
                                 value={inputValue}
                                 onChange={(e) => handleChange(e)}
-                                onKeyPress={(e) => handlekeyPress(e)}
                             />
                             <div>
-                                <button onClick={() => handlePreviousBlock()}>prev</button>
+                                <button onClick={() => handlePreviousBlock()}>previous</button>
                                 <button onClick={() => handleNextBlock()}>next</button>
                             </div>
                         </div>

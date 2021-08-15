@@ -1,4 +1,4 @@
-import { getBuyersData } from "./utils";
+import { getBuyersData, getProductsData, getTransactionsData } from "./utils";
 
 export const getIdsBuyers = async () => {
     return getBuyersData()
@@ -14,4 +14,31 @@ export const filterDataB = (dataB) => {
     } else {
       return dataB;
     }
+}
+
+export const transactionsTable = async (setTransactions) => {
+    return getTransactionsData()
+                .then(res => setTransactions({
+                    dataT: res,
+                    loadingT: false,
+                }))
+                .catch(e => e);
+}
+
+export const ProductsTable = async (setProducts) => {
+    return getProductsData()
+                .then(res => setProducts({
+                    dataP: res,
+                    loadingP: false,
+                }))
+                .catch(e => e);
+}
+
+export const BuyerRequest = async (setBuyers) => {
+    return getBuyersData()
+                .then(res => setBuyers({
+                    dataB: res,
+                    loadingB: false,
+                }))
+                .catch(e => e);
 }

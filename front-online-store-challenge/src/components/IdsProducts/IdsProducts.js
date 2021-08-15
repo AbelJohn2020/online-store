@@ -1,43 +1,50 @@
 import React, { useEffect, useState } from 'react'
-import Products from '../Products/Products';
+import { ProductsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
 
 const IdsProducts = ({ids}) => {
-    const [idsProducts, setIdsProducts] = useState({
-        data: [],
-        loading: true,
+    const [products, setProducts] = useState({
+        dataP:[],
+        loadingP: true,
     });
-
-    const { data, loading } = idsProducts
+          
+    const { dataP } = products;
 
     useEffect(() => {
-        setIdsProducts({
-            data: ids,
-            loading: false
-        })
-    }, [ids])
+        ProductsTable(setProducts);
+    }, []);
 
     const getArrayData = () => {
-        if(typeof(data) === 'string') {
-            return [data]
+        if(typeof(ids) === 'string') {
+            return [ids]
         } else {
-            return data;
+            return ids;
         }
     }
 
     const idsData = getArrayData();
+
+    const filterProducts = () => {
+        if(ids.length !== 0) {
+            return dataP.filter(product => idsData.includes(product['id']))
+        } else {
+            return ids;
+        }
+    }
+
+    const theProducts = filterProducts();
+
     return (
         <div>
-            {
-                !loading && 
-                    <ul>
-                        {
-                            idsData.map( id => (
-                                <Products key={nextId()} idsProducts={id}/>
-                            ))
-                        }
-                    </ul>
-            }
+            <ul>
+                {
+                    theProducts.map( product => (
+                        <li key={nextId()}>
+                            {product.name}
+                        </li>
+                    ))
+                }
+            </ul>
         </div>
     )
 }
