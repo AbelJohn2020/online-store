@@ -9,7 +9,7 @@ const Button = ({ handleClickShadow, shadow }) => {
                 onClick={handleClickShadow}
                 className={shadow ? 'button shadowButton' : 'button lightButton'}
             >
-                {shadow ? 'claro' : 'oscuro'}
+                {shadow ? 'light' : 'shadow'}
             </button>
         </div>
     )
