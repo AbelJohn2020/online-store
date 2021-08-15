@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import IdsProducts from '../IdsProducts/IdsProducts';
 import Loading from '../Loaging/Loading';
-import { Container, Table, TdBody, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
+import { Container, Table, TdBody, TdBodyCapitalize, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
 import { transactionsTable } from '../utils/filterData';
 
 const TableOfTransactions = ({id, name, shadow}) => {
@@ -28,7 +28,9 @@ const TableOfTransactions = ({id, name, shadow}) => {
                 loadingT
                     ?   <Loading />
                     :   <div>
-                            <h1>Table of {name} purchase record</h1>
+                            <h1 className={shadow ? 'title shadowTitle' : 'title lightTitle'}>
+                                Table of {name} purchase record
+                            </h1>
                             <div>
                                 <Table shadow={shadow}>
                                     <thead>
@@ -42,7 +44,7 @@ const TableOfTransactions = ({id, name, shadow}) => {
                                     {
                                         transactionsBuyer.map( transaction => (
                                             <TrBody key={transaction['id']} shadow={shadow}>
-                                                <TdBody>{transaction['device']}</TdBody>
+                                                <TdBodyCapitalize>{transaction['device']}</TdBodyCapitalize>
                                                 <TdBody>
                                                     <Link to={`/ip/${transaction['ip']}`}>
                                                         {transaction['ip']}

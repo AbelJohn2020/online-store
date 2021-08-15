@@ -70,6 +70,13 @@ export const TdBody = styled.td`
     padding: 12px 16px;
 `;
 
+export const TdBodyCapitalize = styled.td`
+    box-sizing: border-box;
+    padding: 12px 16px;
+    text-transform: capitalize;
+    font-weight: bold;
+`;
+
 export const TrBody = styled.tr(({shadow}) => css`
     border-bottom: 1px solid ${colors.lightGray};
     color: ${ shadow ? colors.white : colors.lightBlack};

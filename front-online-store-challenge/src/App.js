@@ -7,6 +7,7 @@ import { getTransactionsData } from "./components/utils/utils";
 import nextId from "react-id-generator";
 import TableOfIps from "./components/TableOfIps/TableOfIps";
 import Button from "./components/Buttons/Buttons";
+import './components/UI/styles.css';
 
 function App() {
   const [idBuyer, setIdBuyer] = useState([])
@@ -29,31 +30,33 @@ function App() {
   }
 
   return (
-    <Router>
-      <Button 
-        handleClickShadow={() => handleClickShadow()} 
-        shadow={shadow} 
-      />
-      <Switch>
-        <Route exact path="/">
-          <TableBuyers shadow={shadow} />
-        </Route>
-        {
-          idBuyer.map(({id, name}) => (
-            <Route key={id} exact path={`/buyer/${id}`}>
-                <TableOfTransactions id={id} name={name} shadow={shadow}/>
-            </Route>
-          ))
-        }
-        {
-          ips.map( ip => (
-            <Route key={nextId()} exact path={`/ip/${ip.ip}`}>
-                <TableOfIps ip={ip.ip} shadow={shadow}/>
-            </Route>
-          ))
-        }
-      </Switch>
-    </Router>
+    <div className={shadow ? 'app darkApp' : 'app lightApp'}>
+      <Router>
+        <Button 
+          handleClickShadow={() => handleClickShadow()} 
+          shadow={shadow} 
+        />
+        <Switch>
+          <Route exact path="/">
+            <TableBuyers shadow={shadow} />
+          </Route>
+          {
+            idBuyer.map(({id, name}) => (
+              <Route key={id} exact path={`/buyer/${id}`}>
+                  <TableOfTransactions id={id} name={name} shadow={shadow}/>
+              </Route>
+            ))
+          }
+          {
+            ips.map( ip => (
+              <Route key={nextId()} exact path={`/ip/${ip.ip}`}>
+                  <TableOfIps ip={ip.ip} shadow={shadow}/>
+              </Route>
+            ))
+          }
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

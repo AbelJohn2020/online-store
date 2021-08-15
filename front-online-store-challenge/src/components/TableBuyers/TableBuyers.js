@@ -4,6 +4,8 @@ import Loading from '../Loaging/Loading';
 import { filterDataB } from '../utils/filterData';
 import { getBuyersData } from '../utils/utils';
 import { FirstBox, Container, Table, TdBody, ThHeader, TrBody, TrHeader, ThirdBox, SecondBox, BoxButtons } from './TableBuyersStyles';
+import '../UI/styles.css';
+import '../Buttons/button.css';
 
 const TableBuyers = ({shadow}) => {
     const [buyers, setBuyers] = useState({
@@ -86,8 +88,18 @@ const TableBuyers = ({shadow}) => {
                                     onChange={(e) => handleChange(e)}
                                 />
                                 <BoxButtons>
-                                    <button onClick={() => handlePreviousBlock()}>previous</button>
-                                    <button onClick={() => handleNextBlock()}>next</button>
+                                    <button 
+                                        onClick={() => handlePreviousBlock()}
+                                        className={shadow ? 'button shadowButton' : 'button lightButton'}
+                                    >
+                                        previous
+                                    </button>
+                                    <button 
+                                        onClick={() => handleNextBlock()}
+                                        className={shadow ? 'button shadowButton' : 'button lightButton'}
+                                    >
+                                        next
+                                    </button>
                                 </BoxButtons>
                             </SecondBox>
                             <ThirdBox>
