@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../Loaging/Loading';
 import { filterDataB } from '../utils/filterData';
 import { getBuyersData } from '../utils/utils';
-import { FirstBox, Container, Table, TdBody, ThHeader, TrBody, TrHeader, ThirdBox, SecondBox, BoxButtons } from './TableBuyersStyles';
+import { FirstBox, Container, Table, TdBody, ThHeader, TrBody, TrHeader, ThirdBox, SecondBox, BoxButtons, Input } from './TableBuyersStyles';
 import '../UI/styles.css';
 import '../Buttons/button.css';
 
@@ -77,15 +77,18 @@ const TableBuyers = ({shadow}) => {
                 loadingB
                     ?   <Loading/>
                     :   <FirstBox>
-                            <h1>Table of Clients that made purchases on the plataform</h1>
+                            <h1 className={shadow ? 'title shadowTitle' : 'title lightTitle'}>
+                                Table of Clients that made purchases on the plataform
+                            </h1>
                             <hr />
 
                             <SecondBox>
-                                <input 
+                                <Input 
                                     type="text"
                                     placeholder="Search partnert name"
                                     value={inputValue}
                                     onChange={(e) => handleChange(e)}
+                                    shadow={shadow}
                                 />
                                 <BoxButtons>
                                     <button 

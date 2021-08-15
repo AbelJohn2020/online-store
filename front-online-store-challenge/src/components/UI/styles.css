@@ -8,6 +8,7 @@
 .app {
     padding: 40px;
     background: #EEEEEE;
+    min-height: 640px;
 }
 
 .darkApp {
@@ -17,8 +18,10 @@
 .title {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    margin: 0 0 12px 0;
+    font-family: 'Roboto';
 }
 
 .shadowTitle {

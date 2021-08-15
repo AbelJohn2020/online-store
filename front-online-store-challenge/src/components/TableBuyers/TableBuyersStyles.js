@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colors } from "../UI/colors";
+import '../UI/styles.css';
 
 export const Container = styled.div`
     width: 100%;
@@ -21,6 +22,7 @@ export const SecondBox = styled.div`
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
+    margin: 16px 0 0 0;
 `;
 
 export const BoxButtons = styled.div`
@@ -90,4 +92,15 @@ export const TrBody = styled.tr(({shadow}) => css`
     &:last-of-type {
         border-bottom: 2px solid ${colors.blue};
     };
+`);
+
+export const Input = styled.input(({shadow}) => css`
+    box-sizing: border-box;
+    width: 72%;
+    border: none;
+    border-radius: 6px;
+    padding: 0 12px;
+    outline: none;
+    background: ${shadow ? colors.gray : colors.darkDarwhite};
+    color: ${ shadow ? colors.white : colors.lightBlack};
 `);

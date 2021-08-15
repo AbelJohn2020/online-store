@@ -3,7 +3,7 @@ import { ProductsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
 import { Li, Ul } from './ListStyles';
 
-const IdsProducts = ({ids}) => {
+const IdsProducts = ({ids, shadow}) => {
     const [products, setProducts] = useState({
         dataP:[],
         loadingP: true,
@@ -40,7 +40,7 @@ const IdsProducts = ({ids}) => {
             <Ul>
                 {
                     theProducts.map( product => (
-                        <Li key={nextId()}>
+                        <Li key={nextId()} shadow={shadow}>
                             {product.name}
                         </Li>
                     ))

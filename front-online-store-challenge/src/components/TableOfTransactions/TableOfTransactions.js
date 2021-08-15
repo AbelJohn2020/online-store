@@ -55,7 +55,7 @@ const TableOfTransactions = ({id, name, shadow}) => {
                                                     </Link>
                                                 </TdBody>
                                                 <TdBody>
-                                                    <IdsProducts ids={transaction['product ids']} />
+                                                    <IdsProducts ids={transaction['product ids']} shadow={shadow}/>
                                                 </TdBody>
                                             </TrBody>
                                         ))

@@ -1,4 +1,6 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { colors } from '../UI/colors';
 
 export const Ul = styled.ul`
     list-style-type: none;
@@ -9,11 +11,10 @@ export const Ul = styled.ul`
     box-sizing: border-box;
 `;
 
-
-export const Li = styled.li`
+export const Li = styled.li( ({shadow}) => css`
     width: 100%;
     margin: 0;
     padding: 4px 8px;
-    text-align: left;
     box-sizing: border-box;
-`;
+    color: ${ shadow ? colors.white : colors.lightBlack};
+`);

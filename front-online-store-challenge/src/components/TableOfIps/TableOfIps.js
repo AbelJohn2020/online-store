@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { BuyerRequest, transactionsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
 import Loading from '../Loaging/Loading';
+import { Li, Ul } from '../IdsProducts/ListStyles';
 
-const TableOfIps = ({ip}) => {
+const TableOfIps = ({ip, shadow}) => {
     const [transactions, setTransactions] = useState({
         dataT:[],
         loadingT: true,
@@ -42,13 +43,18 @@ const TableOfIps = ({ip}) => {
             {
                 loadingT
                     ?   <Loading />
-                    :   <ul>
-                            {
-                                getNames.map( partnert => (
-                                    <li key={nextId()}>{partnert.name}</li>
-                                ))
-                            }
-                        </ul>
+                    :   <div>
+                            <h1 className={shadow ? 'title shadowTitle' : 'title lightTitle'}>
+                                Names of Partners that use same Ip: {ip}
+                            </h1>
+                            <Ul>
+                                {
+                                    getNames.map( partnert => (
+                                        <Li key={nextId()} shadow={shadow}>{partnert.name}</Li>
+                                    ))
+                                }
+                            </Ul>
+                        </div>
                     
             }
         </div>
