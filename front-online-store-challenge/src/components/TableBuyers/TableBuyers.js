@@ -9,6 +9,7 @@ const TableBuyers = () => {
         loadingB: true,
     });
     const [pagination, setPagination] = useState(0)
+    const [inputValue, setInputValue] = useState('');
     const { dataB, loadingB } = buyers;
     
     useEffect(() => {
@@ -21,28 +22,62 @@ const TableBuyers = () => {
     }, []);
 
     
+    const findPartnerts = (data) => {
+        return data.filter( ({name}) => name.includes(inputValue));
+    }
+
     const filterDataBuyers = () => {
         const data = filterDataB(dataB);
-        return data.slice(pagination, pagination+20)
+        if(inputValue.length === 0) {
+            return data.slice(pagination, pagination+20)
+        } else {
+            const findPartnert = findPartnerts(data)
+            return findPartnert.slice(pagination, pagination+20)
+        }
+    }
+
+    const dataBuyers = filterDataBuyers()
+
+    const dataPartnert = () => {
+        const data = filterDataB(dataB);
+        return findPartnerts(data);
     }
 
     const handleNextBlock = () => {
-        if(pagination < 700) {
+        const findPartner = dataPartnert()
+        if(findPartner.length - 1 > pagination + 20) {
             setPagination(pagination+20)
         } else {
             setPagination(0)
         }
+        
+        // if(pagination < 700) {
+        //     setPagination(pagination+20)
+        // } else {
+        //     setPagination(0)
+        // }
     }
 
     const handlePreviousBlock = () => {
         if(pagination > 0) {
             setPagination(pagination-20)
         } else {
-            setPagination(700)
+            const findPartner = dataPartnert()
+            setPagination(findPartner.length - 1)
         }
     }
 
-    const dataBuyers = filterDataBuyers()
+    const handleChange = (e) => {
+        setPagination(0);
+        const input = e.target.value;
+        setInputValue( input );
+    }
+
+    const handlekeyPress = (e) => {
+        if(e.key==='Enter') {
+            setInputValue('');
+        }
+    }
     return (
         <div>
             {
@@ -53,9 +88,19 @@ const TableBuyers = () => {
                 :   <div>
                         <h1>Table of Clients that made purchases on the plataform</h1>
                         <hr />
+
                         <div>
-                            <button onClick={() => handlePreviousBlock()}>prev</button>
-                            <button onClick={() => handleNextBlock()}>next</button>
+                            <input 
+                                type="text"
+                                placeholder="Search partnert name"
+                                value={inputValue}
+                                onChange={(e) => handleChange(e)}
+                                onKeyPress={(e) => handlekeyPress(e)}
+                            />
+                            <div>
+                                <button onClick={() => handlePreviousBlock()}>prev</button>
+                                <button onClick={() => handleNextBlock()}>next</button>
+                            </div>
                         </div>
                         <div>
                             <table>
