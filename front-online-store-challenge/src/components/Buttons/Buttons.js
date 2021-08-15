@@ -1,9 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import './button.css';
 
-const Button = ({ handleClickShadow, shadow }) => {
+export const Button = ({ handleClickShadow, shadow }) => {
     return (
-        <div className="buttonsBox">
+        <div>
             <button 
                 type='button' 
                 onClick={handleClickShadow}
@@ -15,4 +16,40 @@ const Button = ({ handleClickShadow, shadow }) => {
     )
 };
 
-export default Button;
+export const BackButton = ({ shadow, name }) => {
+    const history = useHistory()
+    const handleClick = () => {
+        history.goBack();
+    }
+
+    return (
+        <div>
+            <button 
+                type='button' 
+                onClick={handleClick}
+                className={shadow ? 'button shadowButton' : 'button lightButton'}
+            >
+                {name}
+            </button>
+        </div>
+    )
+};
+
+export const BackMainPage = ({ shadow, name }) => {
+    const history = useHistory()
+    const handleClick = () => {
+        history.push("/");
+    }
+
+    return (
+        <div>
+            <button 
+                type='button' 
+                onClick={handleClick}
+                className={shadow ? 'button shadowButton' : 'button lightButton'}
+            >
+                {name}
+            </button>
+        </div>
+    )
+};

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BuyerRequest, transactionsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
 import Loading from '../Loaging/Loading';
-import { Li, Ul } from '../IdsProducts/ListStyles';
+import { Container, Table, TdBody, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
 
 const TableOfIps = ({ip, shadow}) => {
     const [transactions, setTransactions] = useState({
@@ -39,7 +39,7 @@ const TableOfIps = ({ip, shadow}) => {
     const getNames = compare();
 
     return (
-        <div>
+        <Container>
             {
                 loadingT
                     ?   <Loading />
@@ -47,17 +47,26 @@ const TableOfIps = ({ip, shadow}) => {
                             <h1 className={shadow ? 'title shadowTitle' : 'title lightTitle'}>
                                 Names of Partners that use same Ip: {ip}
                             </h1>
-                            <Ul>
-                                {
-                                    getNames.map( partnert => (
-                                        <Li key={nextId()} shadow={shadow}>{partnert.name}</Li>
-                                    ))
-                                }
-                            </Ul>
+                            <Table>
+                                <thead>
+                                    <TrHeader>
+                                        <ThHeader>names</ThHeader>
+                                    </TrHeader>
+                                </thead>
+                                <tbody>
+                                    {
+                                        getNames.map( partnert => (
+                                            <TrBody key={nextId()} shadow={shadow}>
+                                                <TdBody><b>{partnert.name}</b></TdBody>
+                                            </TrBody>
+                                        ))
+                                    }
+                                </tbody>
+                            </Table>
                         </div>
                     
             }
-        </div>
+        </Container>
     )
 }
 
