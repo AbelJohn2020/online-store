@@ -115,7 +115,10 @@ const TableBuyers = ({shadow}) => {
                                         dataBuyers.map( ({id, name, age}) => (
                                             <TrBody key={id} shadow={shadow}>
                                                 <TdBody>
-                                                    <Link to={`/buyer/${id}`} className="name">
+                                                    <Link 
+                                                        to={`/buyer/${id}`} 
+                                                        className={shadow ? 'link shadowlink' : 'link lightlink'}
+                                                    >
                                                         {name}
                                                     </Link>
                                                 </TdBody>

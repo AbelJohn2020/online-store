@@ -4,6 +4,7 @@ import IdsProducts from '../IdsProducts/IdsProducts';
 import Loading from '../Loaging/Loading';
 import { Container, Table, TdBody, TdBodyCapitalize, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
 import { transactionsTable } from '../utils/filterData';
+import '../UI/styles.css';
 
 const TableOfTransactions = ({id, name, shadow}) => {
     const [transactions, setTransactions] = useState({
@@ -46,7 +47,10 @@ const TableOfTransactions = ({id, name, shadow}) => {
                                             <TrBody key={transaction['id']} shadow={shadow}>
                                                 <TdBodyCapitalize>{transaction['device']}</TdBodyCapitalize>
                                                 <TdBody>
-                                                    <Link to={`/ip/${transaction['ip']}`}>
+                                                    <Link 
+                                                        to={`/ip/${transaction['ip']}`}
+                                                        className={shadow ? 'link shadowlink' : 'link lightlink'}
+                                                    >
                                                         {transaction['ip']}
                                                     </Link>
                                                 </TdBody>

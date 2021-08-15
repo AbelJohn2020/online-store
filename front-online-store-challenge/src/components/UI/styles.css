@@ -28,3 +28,29 @@
 .lightTitle {
     color: #444444;
 }
+
+.link {
+    width: 100%;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.lightlink,
+.lightlink:visited {
+    color: #484848;
+}
+
+.shadowlink,
+.shadowlink:visited {
+    color: #FFFFFF;
+}
+
+.lightlink:hover {
+    color: #181818;
+    font-weight: bold;
+}
+
+.shadowlink:hover {
+    color: #EEEEEE;
+    font-weight: bold;
+}
