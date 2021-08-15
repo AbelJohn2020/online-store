@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../Loaging/Loading';
 import { filterDataB } from '../utils/filterData';
 import { getBuyersData } from '../utils/utils';
-import { Table, TdBody, ThHeader, TrBody, TrHeader } from './TableBuyersStyles';
+import { FirstBox, Container, Table, TdBody, ThHeader, TrBody, TrHeader, ThirdBox, SecondBox, BoxButtons } from './TableBuyersStyles';
 
 const TableBuyers = ({shadow}) => {
     const [buyers, setBuyers] = useState({
@@ -31,10 +31,10 @@ const TableBuyers = ({shadow}) => {
     const filterDataBuyers = () => {
         const data = filterDataB(dataB);
         if(inputValue.length === 0) {
-            return data.slice(pagination, pagination+20)
+            return data.slice(pagination, pagination+10)
         } else {
             const findPartnert = findPartnerts(data)
-            return findPartnert.slice(pagination, pagination+20)
+            return findPartnert.slice(pagination, pagination+10)
         }
     }
 
@@ -47,8 +47,8 @@ const TableBuyers = ({shadow}) => {
 
     const handleNextBlock = () => {
         const findPartner = dataPartnert()
-        if(findPartner.length - 1 > pagination + 20) {
-            setPagination(pagination+20)
+        if(findPartner.length - 1 > pagination + 10) {
+            setPagination(pagination+10)
         } else {
             setPagination(0)
         }
@@ -56,7 +56,7 @@ const TableBuyers = ({shadow}) => {
 
     const handlePreviousBlock = () => {
         if(pagination > 0) {
-            setPagination(pagination-20)
+            setPagination(pagination-10)
         } else {
             const findPartner = dataPartnert()
             setPagination(findPartner.length - 1)
@@ -70,27 +70,27 @@ const TableBuyers = ({shadow}) => {
     }
 
     return (
-        <div>
+        <Container>
             {
                 loadingB
                     ?   <Loading/>
-                    :   <div>
+                    :   <FirstBox>
                             <h1>Table of Clients that made purchases on the plataform</h1>
                             <hr />
 
-                            <div>
+                            <SecondBox>
                                 <input 
                                     type="text"
                                     placeholder="Search partnert name"
                                     value={inputValue}
                                     onChange={(e) => handleChange(e)}
                                 />
-                                <div>
+                                <BoxButtons>
                                     <button onClick={() => handlePreviousBlock()}>previous</button>
                                     <button onClick={() => handleNextBlock()}>next</button>
-                                </div>
-                            </div>
-                            <div>
+                                </BoxButtons>
+                            </SecondBox>
+                            <ThirdBox>
                                 <Table shadow={shadow}>
                                     <thead>
                                         <TrHeader>
@@ -101,7 +101,7 @@ const TableBuyers = ({shadow}) => {
                                     <tbody>
                                     {
                                         dataBuyers.map( ({id, name, age}) => (
-                                            <TrBody key={id}>
+                                            <TrBody key={id} shadow={shadow}>
                                                 <TdBody>
                                                     <Link to={`/buyer/${id}`} className="name">
                                                         {name}
@@ -113,10 +113,10 @@ const TableBuyers = ({shadow}) => {
                                     }
                                     </tbody>
                                 </Table>
-                            </div>
-                        </div>
+                            </ThirdBox>
+                        </FirstBox>
             }
-        </div>
+        </Container>
     )
 }
 

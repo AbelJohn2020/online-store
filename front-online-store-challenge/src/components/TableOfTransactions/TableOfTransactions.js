@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import IdsProducts from '../IdsProducts/IdsProducts';
 import Loading from '../Loaging/Loading';
+import { Container, Table, TdBody, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
 import { transactionsTable } from '../utils/filterData';
 
-const TableOfTransactions = ({id, name}) => {
+const TableOfTransactions = ({id, name, shadow}) => {
     const [transactions, setTransactions] = useState({
       dataT:[],
       loadingT: true,
@@ -22,43 +23,43 @@ const TableOfTransactions = ({id, name}) => {
     const transactionsBuyer = filterDataTransactionsByBuyer();
 
     return (
-        <div>
+        <Container>
             {
                 loadingT
                     ?   <Loading />
                     :   <div>
                             <h1>Table of {name} purchase record</h1>
                             <div>
-                                <table>
+                                <Table shadow={shadow}>
                                     <thead>
-                                        <tr>
-                                            <th cope="col">device</th>
-                                            <th cope="col">ips</th>
-                                            <th cope="col">products</th>
-                                        </tr>
+                                        <TrHeader>
+                                            <ThHeader cope="col">device</ThHeader>
+                                            <ThHeader cope="col">ips</ThHeader>
+                                            <ThHeader cope="col">products</ThHeader>
+                                        </TrHeader>
                                     </thead>
                                     <tbody>
                                     {
                                         transactionsBuyer.map( transaction => (
-                                            <tr key={transaction['id']}>
-                                                <td>{transaction['device']}</td>
-                                                <td>
+                                            <TrBody key={transaction['id']} shadow={shadow}>
+                                                <TdBody>{transaction['device']}</TdBody>
+                                                <TdBody>
                                                     <Link to={`/ip/${transaction['ip']}`}>
                                                         {transaction['ip']}
                                                     </Link>
-                                                </td>
-                                                <td>
+                                                </TdBody>
+                                                <TdBody>
                                                     <IdsProducts ids={transaction['product ids']} />
-                                                </td>
-                                            </tr>
+                                                </TdBody>
+                                            </TrBody>
                                         ))
                                     }
                                     </tbody>
-                                </table>
+                                </Table>
                             </div>
                         </div>
             }
-        </div>
+        </Container>
     )
 }
 

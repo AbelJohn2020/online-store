@@ -2,7 +2,43 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colors } from "../UI/colors";
 
+export const Container = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+`;
+
+export const FirstBox = styled.div`
+    width: 74%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+`;
+
+export const SecondBox = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+`;
+
+export const BoxButtons = styled.div`
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+`;
+
+export const ThirdBox = styled.div`
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+`;
+
 export const Table = styled.table(({shadow}) => css`
+    width: 100%;
     border-collapse: collapse;
     box-sizing: border-box;
     margin: 24px 0;
