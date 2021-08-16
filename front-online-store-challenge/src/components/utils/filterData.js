@@ -42,3 +42,17 @@ export const BuyerRequest = async (setBuyers) => {
                 }))
                 .catch(e => e);
 }
+
+export const getDateToString = (date) => {
+    const timestamp = parseInt(date.replace('#0000', ''), 16);
+    const convertDate = new Date(timestamp*1000);
+    const stringDate = convertDate.toDateString()
+    return stringDate;
+}
+
+export const getDateToStringBuyers = (date) => {
+    const timestamp = parseInt(date, 16);
+    const convertDate = new Date(timestamp*1000);
+    const stringDate = convertDate.toDateString()
+    return stringDate;
+}

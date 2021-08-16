@@ -9,6 +9,8 @@ export const Ul = styled.ul`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 `;
 
 export const Li = styled.li( ({shadow}) => css`

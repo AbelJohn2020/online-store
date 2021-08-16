@@ -15,6 +15,10 @@ export const FirstBox = styled.div`
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+
+    @media(max-width: 788px) {
+        width: 96%;
+    }
 `;
 
 export const SecondBox = styled.div`
@@ -29,7 +33,36 @@ export const BoxButtons = styled.div`
     width: 20%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     box-sizing: border-box;
+
+    @media(max-width: 1240px) {
+        width: 24%;
+    }
+
+    @media(max-width: 1050px) {
+        width: 22%;
+    }
+
+    @media(max-width: 970px) {
+        width: 26%;
+    }
+
+    @media(max-width: 800px) {
+        width: 30%;
+    }
+
+    @media(max-width: 788px) {
+        width: 24%;
+    }
+
+    @media(max-width: 700px) {
+        width: 34%;
+    }
+
+    @media(max-width: 416px) {
+        width: 40%;
+    }
 `;
 
 export const ThirdBox = styled.div`
@@ -43,12 +76,16 @@ export const Table = styled.table(({shadow}) => css`
     width: 100%;
     border-collapse: collapse;
     box-sizing: border-box;
-    margin: 24px 0;
+    margin: 0;
     font-size: 16px;
     overflow: hidden;
     box-shadow: ${shadow ? `0 3px 16px 4px ${colors.lightLightGray}` :  `0 0 16px 4px ${colors.shadow}`};
     border-radius: 8px 8px 0 0;
     font-family: 'Roboto';
+
+    @media(max-width: 400px) {
+        font-size: 12px;
+    }
 `);
 
 export const TrHeader = styled.tr`
@@ -71,6 +108,15 @@ export const TdBody = styled.td`
     box-sizing: border-box;
     padding: 12px 16px;
 `;
+
+export const TdBodyLink = styled.td( ({shadow}) => css`
+    box-sizing: border-box;
+    padding: 12px 16px;
+
+    &:hover {
+        background: ${shadow ? colors.midGray : colors.cColor};
+    }
+`);
 
 export const TdBodyCapitalize = styled.td`
     box-sizing: border-box;
@@ -103,4 +149,12 @@ export const Input = styled.input(({shadow}) => css`
     outline: none;
     background: ${shadow ? colors.gray : colors.darkDarwhite};
     color: ${ shadow ? colors.white : colors.lightBlack};
+
+    @media(max-width: 970px) {
+        width: 64%;
+    }
+
+    @media(max-width: 788px) {
+        width: 56%;
+    }
 `);

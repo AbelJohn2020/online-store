@@ -24,6 +24,16 @@
     font-family: 'Roboto';
 }
 
+.h4 {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+    margin: 16px 0 12px 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+
 .shadowTitle {
     color: #F2F2F2;
 }
@@ -50,12 +60,10 @@
 
 .lightlink:hover {
     color: #181818;
-    font-weight: bold;
 }
 
 .shadowlink:hover {
     color: #EEEEEE;
-    font-weight: bold;
 }
 
 .navbar {
@@ -71,4 +79,47 @@
     width: 14%;
     display: flex;
     justify-content: space-between;
+    box-sizing: border-box;
+}
+
+@media(max-width: 788px) {
+    .navbar {
+        padding: 8px 12px;
+    }
+
+    .navbar__left {
+        width: 22%;
+    }
+}
+
+@media(max-width: 660px) {
+    .navbar__left {
+        width: 32%;
+    }
+}
+
+@media(max-width: 416px) {
+    .app {
+        padding: 12px;
+    }
+
+    .title {
+        margin: 12px 0 8px 0;
+        padding: 0;
+        font-size: 16px;
+    }
+    
+    .h4 {
+        margin: 12px 0 8px 0;
+        padding: 0;
+        font-size: 12px;
+    }
+
+    .navbar {
+        padding: 4px 8px;
+    }
+
+    .navbar__left {
+        width: 38%;
+    }
 }

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import IdsProducts from '../IdsProducts/IdsProducts';
 import Loading from '../Loaging/Loading';
-import { Container, Table, TdBody, TdBodyCapitalize, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
-import { transactionsTable } from '../utils/filterData';
+import { Container, FirstBox, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
+import { getDateToString, transactionsTable } from '../utils/filterData';
 import '../UI/styles.css';
+import { DivTdBody, TableT, Td, TdBodyCapitalizeT, TdBodyLinkT, TdBodyT, ThHeaderT } from './TableOfTransactionsStyles';
 
 const TableOfTransactions = ({id, name, shadow}) => {
     const [transactions, setTransactions] = useState({
@@ -23,47 +24,70 @@ const TableOfTransactions = ({id, name, shadow}) => {
 
     const transactionsBuyer = filterDataTransactionsByBuyer();
 
+    const getNewArrayWithDate = () => {
+        return transactionsBuyer.map( transaction => {
+            return {
+                "id": transaction["id"],
+                "date": getDateToString(transaction["id"]),
+                "buyer id": transaction["buyer id"],
+                "ip": transaction["ip"],
+                "device": transaction["device"],
+                "product ids" : transaction["product ids"]
+            }
+        })
+    }
+
+    const transactionsBuyerWithDates = getNewArrayWithDate();
+
     return (
         <Container>
             {
                 loadingT
                     ?   <Loading />
-                    :   <div>
+                    :   <FirstBox>
                             <h1 className={shadow ? 'title shadowTitle' : 'title lightTitle'}>
                                 Table of {name} purchase record
                             </h1>
                             <div>
-                                <Table shadow={shadow}>
+                                <h4 className={shadow ? 'h4 shadowTitle' : 'h4 lightTitle'}>
+                                    Select Ip
+                                </h4>
+                                <TableT shadow={shadow}>
                                     <thead>
                                         <TrHeader>
-                                            <ThHeader cope="col">device</ThHeader>
+                                            <ThHeaderT cope="col">date</ThHeaderT>
+                                            <ThHeaderT cope="col">device</ThHeaderT>
                                             <ThHeader cope="col">ips</ThHeader>
                                             <ThHeader cope="col">products</ThHeader>
                                         </TrHeader>
                                     </thead>
                                     <tbody>
                                     {
-                                        transactionsBuyer.map( transaction => (
+                                        transactionsBuyerWithDates.map( transaction => (
                                             <TrBody key={transaction['id']} shadow={shadow}>
-                                                <TdBodyCapitalize>{transaction['device']}</TdBodyCapitalize>
-                                                <TdBody>
+                                                <Td>
+                                                    {transaction['date']}
+                                                </Td>
+                                                <TdBodyCapitalizeT>{transaction['device']}</TdBodyCapitalizeT>
+                                                <TdBodyLinkT shadow={shadow}>
+                                                    <DivTdBody>{transaction['device']}</DivTdBody>
                                                     <Link 
                                                         to={`/ip/${transaction['ip']}`}
                                                         className={shadow ? 'link shadowlink' : 'link lightlink'}
                                                     >
                                                         {transaction['ip']}
                                                     </Link>
-                                                </TdBody>
-                                                <TdBody>
+                                                </TdBodyLinkT>
+                                                <TdBodyT>
                                                     <IdsProducts ids={transaction['product ids']} shadow={shadow}/>
-                                                </TdBody>
+                                                </TdBodyT>
                                             </TrBody>
                                         ))
                                     }
                                     </tbody>
-                                </Table>
+                                </TableT>
                             </div>
-                        </div>
+                        </FirstBox>
             }
         </Container>
     )

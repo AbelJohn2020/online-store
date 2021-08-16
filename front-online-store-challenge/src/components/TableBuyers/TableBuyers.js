@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Loading from '../Loaging/Loading';
-import { filterDataB } from '../utils/filterData';
+import { filterDataB, getDateToStringBuyers } from '../utils/filterData';
 import { getBuyersData } from '../utils/utils';
-import { FirstBox, Container, Table, TdBody, ThHeader, TrBody, TrHeader, ThirdBox, SecondBox, BoxButtons, Input } from './TableBuyersStyles';
+import { FirstBox, Container, Table, TdBody, ThHeader, TrBody, TrHeader, ThirdBox, SecondBox, BoxButtons, Input, TdBodyLink } from './TableBuyersStyles';
 import '../UI/styles.css';
 import '../Buttons/button.css';
 
@@ -41,6 +41,19 @@ const TableBuyers = ({shadow}) => {
     }
 
     const dataBuyers = filterDataBuyers()
+
+    const dataBuyersWithDate = () => {
+        return dataBuyers.map( buyer => {
+            return {
+                id: buyer.id,
+                date: getDateToStringBuyers(buyer.id),
+                name: buyer.name,
+                age: buyer.age
+            }
+        })
+    }
+
+    const dataBuyersDate = dataBuyersWithDate();
 
     const dataPartnert = () => {
         const data = filterDataB(dataB);
@@ -105,26 +118,38 @@ const TableBuyers = ({shadow}) => {
                                     </button>
                                 </BoxButtons>
                             </SecondBox>
+                            <h4 className={shadow ? 'h4 shadowTitle' : 'h4 lightTitle'}>
+                                Select date or name
+                            </h4>
                             <ThirdBox>
                                 <Table shadow={shadow}>
                                     <thead>
                                         <TrHeader>
-                                            <ThHeader cope="col">Name</ThHeader>
-                                            <ThHeader cope="col">Age</ThHeader>
+                                            <ThHeader cope="col">date</ThHeader>
+                                            <ThHeader cope="col">name</ThHeader>
+                                            <ThHeader cope="col">age</ThHeader>
                                         </TrHeader>
                                     </thead>
                                     <tbody>
                                     {
-                                        dataBuyers.map( ({id, name, age}) => (
+                                        dataBuyersDate.map( ({id, date, name, age}) => (
                                             <TrBody key={id} shadow={shadow}>
-                                                <TdBody>
+                                                <TdBodyLink shadow={shadow}>
+                                                    <Link 
+                                                        to={`/buyers/date/${id}`}
+                                                        className={shadow ? 'link shadowlink' : 'link lightlink'}
+                                                    >
+                                                    {date}
+                                                    </Link>
+                                                </TdBodyLink>
+                                                <TdBodyLink shadow={shadow}>
                                                     <Link 
                                                         to={`/buyer/${id}`} 
                                                         className={shadow ? 'link shadowlink' : 'link lightlink'}
                                                     >
                                                         {name}
                                                     </Link>
-                                                </TdBody>
+                                                </TdBodyLink>
                                                 <TdBody>{age}</TdBody>
                                             </TrBody>
                                         ))

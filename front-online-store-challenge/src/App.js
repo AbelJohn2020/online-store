@@ -8,6 +8,7 @@ import nextId from "react-id-generator";
 import TableOfIps from "./components/TableOfIps/TableOfIps";
 import { BackButton, BackMainPage, Button } from "./components/Buttons/Buttons";
 import './components/UI/styles.css';
+import TableOfDates from "./components/TableOfDates/TableOfDates";
 
 function App() {
 
@@ -64,6 +65,13 @@ function App() {
             ips.map( ip => (
               <Route key={nextId()} exact path={`/ip/${ip.ip}`}>
                   <TableOfIps ip={ip.ip} shadow={shadow}/>
+              </Route>
+            ))
+          }
+          {
+            idBuyer.map(({id, name}) => (
+              <Route key={id} exact path={`/buyers/date/${id}`}>
+                  <TableOfDates id={id} shadow={shadow} buyers={idBuyer}/>
               </Route>
             ))
           }

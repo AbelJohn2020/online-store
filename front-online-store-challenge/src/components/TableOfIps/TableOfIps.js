@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { BuyerRequest, ProductsTable, transactionsTable } from '../utils/filterData';
 import nextId from "react-id-generator";
 import Loading from '../Loaging/Loading';
-import { Container, Table, TdBody, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
+import { Container, FirstBox, Table, TdBody, ThHeader, TrBody, TrHeader } from '../TableBuyers/TableBuyersStyles';
 import { Li, Ul } from '../IdsProducts/ListStyles';
-import { ThHeaderCenter } from './TableOfIpsStyles';
+import { Div, ThHeaderCenter } from './TableOfIpsStyles';
 
 const TableOfIps = ({ip, shadow}) => {
     const [transactions, setTransactions] = useState({
@@ -76,47 +76,50 @@ const TableOfIps = ({ip, shadow}) => {
             {
                 loadingT
                     ?   <Loading />
-                    :   <div>
+                    :   <FirstBox>
                             <h1 className={shadow ? 'title shadowTitle' : 'title lightTitle'}>
                                 Names of Partners that use same Ip: {ip}
                             </h1>
-                            <Table>
-                                <thead>
-                                    <TrHeader>
-                                        <ThHeader>names</ThHeader>
-                                        <ThHeaderCenter>product</ThHeaderCenter>
-                                        <ThHeaderCenter>price</ThHeaderCenter>
-                                    </TrHeader>
-                                </thead>
-                                <tbody>
-                                    {
-                                        recomendations.map(({partnert, product, price}) => (
-                                            <TrBody key={nextId()} shadow={shadow}>
-                                                <TdBody>{partnert}</TdBody>
-                                                <TdBody>
-                                                    <Ul>
-                                                        {
-                                                            product.map( prod => (
-                                                                <Li key={nextId()}>{prod}</Li>
-                                                            ))
-                                                        }
-                                                    </Ul>
-                                                </TdBody>
-                                                <TdBody>
-                                                    <Ul>
-                                                        {
-                                                            price.map( pric => (
-                                                                <Li key={nextId()}>{pric}</Li>
-                                                            ))
-                                                        }
-                                                    </Ul>
-                                                </TdBody>
-                                            </TrBody>
-                                        ))
-                                    }
-                                </tbody>
-                            </Table>
-                        </div>
+                            <hr />
+                            <Div>
+                                <Table>
+                                    <thead>
+                                        <TrHeader>
+                                            <ThHeader>names</ThHeader>
+                                            <ThHeaderCenter>product</ThHeaderCenter>
+                                            <ThHeaderCenter>price</ThHeaderCenter>
+                                        </TrHeader>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            recomendations.map(({partnert, product, price}) => (
+                                                <TrBody key={nextId()} shadow={shadow}>
+                                                    <TdBody>{partnert}</TdBody>
+                                                    <TdBody>
+                                                        <Ul>
+                                                            {
+                                                                product.map( prod => (
+                                                                    <Li key={nextId()}>{prod}</Li>
+                                                                ))
+                                                            }
+                                                        </Ul>
+                                                    </TdBody>
+                                                    <TdBody>
+                                                        <Ul>
+                                                            {
+                                                                price.map( pric => (
+                                                                    <Li key={nextId()}>{pric}</Li>
+                                                                ))
+                                                            }
+                                                        </Ul>
+                                                    </TdBody>
+                                                </TrBody>
+                                            ))
+                                        }
+                                    </tbody>
+                                </Table>
+                            </Div>
+                        </FirstBox>
                     
             }
         </Container>
