@@ -99,7 +99,7 @@ const TableOfIps = ({ip, shadow}) => {
                                                         <Ul>
                                                             {
                                                                 product.map( prod => (
-                                                                    <Li key={nextId()}>{prod}</Li>
+                                                                    <Li key={nextId()} shadow={shadow}>{prod}</Li>
                                                                 ))
                                                             }
                                                         </Ul>
@@ -108,7 +108,7 @@ const TableOfIps = ({ip, shadow}) => {
                                                         <Ul>
                                                             {
                                                                 price.map( pric => (
-                                                                    <Li key={nextId()}>{pric}</Li>
+                                                                    <Li key={nextId()} shadow={shadow}>{pric}</Li>
                                                                 ))
                                                             }
                                                         </Ul>
